@@ -1,0 +1,31 @@
+*.DS_Store
+build/
+build_doc/
+*.user
+
+.vscode
+.idea
+.project
+.cproject
+.pydevproject
+.settings/
+Makefile
+.test_env/
+third_party/
+
+*~
+bazel-*
+third_party/
+
+# clion workspace.
+cmake-build-*
+
+# generated while compiling
+python/paddle/v2/fluid/core.so
+paddle/pybind/pybind.h
+CMakeFiles
+cmake_install.cmake
+paddle/.timestamp
+python/paddlepaddle.egg-info/
+paddle/pybind/pybind.h
+python/paddle/version.py
