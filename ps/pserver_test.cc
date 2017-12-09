@@ -4,5 +4,5 @@
 using namespace ps;
 
 TEST(Pserver, Init) {
-  
+  Pserver<int64_t, float> pserver;
 }

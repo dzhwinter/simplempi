@@ -1,0 +1,16 @@
+syntax="proto2";
+package service;
+
+option cc_generic_services = true;
+
+message Request{
+    optional string parameters = 1;
+}
+
+message Response {
+    optional int32 status = 1;
+}
+
+service Service {
+      rpc Send(Request) returns (Response);
+}
