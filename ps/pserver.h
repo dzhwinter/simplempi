@@ -2,6 +2,8 @@
 #include <memory>
 #include <vector>
 #include <thread>
+#include <utility>
+
 #include "brpc/server.h"
 #include "kv.h"
 
@@ -11,11 +13,11 @@ class Pserver {
 public:
   explicit Pserver(int id, int shard_count): _server_id(id) {
     for(size_t i=0; i < shard_count; ++i) {
-      _shards.push_back(new KVstore<KEY, VAL>());
+      _shards.emplace_back(new KVstore<KEY, VAL>());
     }
     // start server thread
     for(size_t i=0; i < _shards.size(); ++i) {
-      auto th = std::thread(PserverService);
+      auto th = std::thread(&Pserver<KEY, VAL>::PserverService, this);
       th.detach();
       _threads.push_back(std::move(th));
     }
@@ -23,7 +25,7 @@ public:
 
   ~Pserver() {
     for(size_t i=0; i < _shards.size(); ++i) {
-      _threads[i].join()
+      _threads[i].join();
     }
   }
 

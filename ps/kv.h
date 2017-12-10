@@ -29,4 +29,5 @@ public:
 private:
   std::unordered_map<KEY, VAL> _store;
 };
+
 }

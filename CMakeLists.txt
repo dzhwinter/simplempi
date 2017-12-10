@@ -2,10 +2,10 @@ cmake_minimum_required(VERSION 3.0)
 project(paddle CXX C)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-include(external/zlib)    # download, build, install python
 include(external/gflags)    # download, build, install gflags
-include(external/glog)      # download, build, install glog
 include(external/gtest)     # download, build, install gtest
+include(external/zlib)    # download, build, install python
+include(external/glog)      # download, build, install glog
 include(external/protobuf)  # download, build, install protobuf
 include(external/brpc)  # download, build, install protobuf
 # include(external/python)    # download, build, install python
@@ -26,7 +26,7 @@ set(EXTERNAL_LIBS
     ${GTEST_LIBRARIES}
     ${GLOG_LIBRARIES}
     ${PROTOBUF_LIBRARY}
-    ${BRPC_LIBRARIES}
+    ${BRPC_LIBRARY}
 )
 add_subdirectory(common)
 add_subdirectory(ps)
