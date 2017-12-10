@@ -7,6 +7,7 @@ include(external/gflags)    # download, build, install gflags
 include(external/glog)      # download, build, install glog
 include(external/gtest)     # download, build, install gtest
 include(external/protobuf)  # download, build, install protobuf
+include(external/brpc)  # download, build, install protobuf
 # include(external/python)    # download, build, install python
 
 include(generic)            # simplify cmake module
@@ -17,6 +18,7 @@ set(THIRD_PARTY_PATH "${CMAKE_BINARY_DIR}/third_party" CACHE STRING
 
 # options
 option(WITH_TESTING     "Compile with unit testing"        ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 
 set(EXTERNAL_LIBS
@@ -24,6 +26,7 @@ set(EXTERNAL_LIBS
     ${GTEST_LIBRARIES}
     ${GLOG_LIBRARIES}
     ${PROTOBUF_LIBRARY}
-    ${PYTHON_LIBRARIES}
+    ${BRPC_LIBRARIES}
 )
+add_subdirectory(common)
 add_subdirectory(ps)

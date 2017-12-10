@@ -225,18 +225,8 @@ FUNCTION(build_protobuf TARGET_NAME BUILD_FOR_HOST)
     )
 ENDFUNCTION()
 
-IF(NOT MOBILE_INFERENCE)
-    SET(PROTOBUF_VERSION 3.1)
-ELSE()
-    SET(PROTOBUF_VERSION 3.2)
-ENDIF()
-IF(CMAKE_CROSSCOMPILING)
-    build_protobuf(protobuf_host TRUE)
-    LIST(APPEND external_project_dependencies protobuf_host)
+SET(PROTOBUF_VERSION 2.6.1)
 
-    SET(PROTOBUF_PROTOC_EXECUTABLE ${protobuf_host_PROTOC_EXECUTABLE}
-        CACHE FILEPATH "protobuf executable." FORCE)
-ENDIF()
 
 IF(NOT PROTOBUF_FOUND)
     build_protobuf(extern_protobuf FALSE)
