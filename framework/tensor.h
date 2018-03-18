@@ -107,8 +107,8 @@ private:
         : capacity_(size),
           place_(place),
           type_(t),
-          ptr_(static_cast<uint8_t*>(Alloc<Place>(size)), PoDDeleter<Place>()) {
-    }
+          ptr_(static_cast<uint8_t*>(Alloc<Place>(size)),
+               PoDDeleter<uint8_t, Place>()) {}
     ~PlaceholderImpl() { capacity_ = 0; }
     ps::Place place() const { return place_; }
     size_t capacity() const { return capacity_; }

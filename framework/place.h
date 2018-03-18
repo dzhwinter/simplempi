@@ -45,12 +45,18 @@ static inline int SizeofType(std::type_index type) {
   CHECK(size != 0) << "Unsupported type " << type.name();
   return size;
 }
+template <typename T>
+static inline int SizeofType(T t) {
+  std::type_index type(typeid(t));
+  return SizeofType(type);
+}
 
 // place indicate the memory address space
 struct CPUPlace {};
 
 struct GPUPlace {
   GPUPlace() : gpu_id(0) {}
+  GPUPlace(int i) : gpu_id(i) {}
   int gpu_id;
 };
 
@@ -70,6 +76,10 @@ static inline bool is_gpu_place(const Place& place) {
 
 static inline bool is_cpu_place(const Place& place) {
   return boost::apply_visitor(PlaceVisitor(), place) == CPUPlaceIndex;
+}
+
+static inline bool is_same_place(const Place& a, const Place& b) {
+  return a.which() == b.which();
 }
 
 }  // namespace ps
